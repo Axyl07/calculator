@@ -21,13 +21,13 @@ const divide = function (num1, num2) {
 const operate = function (first, second, operator) {
   switch (operator) {
     case "+":
-      return add(first, second);  
+      return add(first, second).toFixed(2);  
     case "-":
-      return sub(first, second);
+      return sub(first, second).toFixed(2);
     case "*":
-      return multiply(first, second);
+      return multiply(first, second).toFixed(2);
     case "/":
-      return divide(first, second);
+      return divide(first, second).toFixed(2);
     default:
         "Enter valid numbers";
         break;
@@ -42,7 +42,10 @@ const numberButton = document.querySelectorAll(".numberButtons button");
 const operatorButton = document.querySelectorAll(".EvaluationButtons button")
 const equalButton = document.querySelector("#equal");
 const clear = document.querySelector("#clear");
-let displayValue = display.textContent;
+const displayValue = display.textContent;
+const decimal = document.querySelector('#decimal');
+const backspace = document.querySelector('#backspace');
+
 
 let firstNum;
 let secondNum;
@@ -50,15 +53,24 @@ let operator;
 
 const getNumber = numberButton.forEach((numbutton) => {
   numbutton.addEventListener("click", () => {
+    
     display.textContent += numbutton.textContent;
-    if (operator === '+' || operator === '-' || operator === '/' || operator === '*') {
-      secondNum = display.textContent;
-      secondNum = parseFloat(secondNum);
-    } else {
-      firstNum = display.textContent;
-      firstNum = parseFloat(firstNum);
-    }
-
+      if (operator === '+' || operator === '-' || operator === '/' || operator === '*') {
+        secondNum = display.textContent;
+        if (secondNum.includes('.')) {
+          decimal.disabled = true;
+        }
+        else decimal.disabled = false;
+        secondNum = parseFloat(secondNum);
+      } else {
+        firstNum = display.textContent;
+        if (firstNum.includes('.')) {
+          decimal.disabled = true;
+        }
+        else decimal.disabled = false;
+        firstNum = parseFloat(firstNum);
+      }
+    
     console.log("fist num is "+firstNum);
     console.log("second is "+secondNum);
   });
@@ -74,12 +86,25 @@ operatorButton.forEach((opbutton) => {
 })
 
 equalButton.addEventListener("click", () => {
-  display.textContent = operate(firstNum, secondNum, operator);
-  console.log(operate(firstNum, secondNum, operator));
+  let result = operate(firstNum, secondNum, operator);
+  display.textContent = result;
+  
+  console.log(result);
 })
 clear.addEventListener("click", () => {
   display.textContent = "";
   firstNum = "";
   secondNum = "";
   operator = "";
+})
+
+backspace.addEventListener("click", () => {
+  display.textContent = display.textContent.substring(0, display.textContent.length - 1);
+  if (operator === '+' || operator === '-' || operator === '/' || operator === '*') {
+    secondNum = display.textContent;
+    secondNum = parseFloat(secondNum);
+  } else {
+    firstNum = display.textContent;
+    firstNum = parseFloat(firstNum);
+  }
 })
