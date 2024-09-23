@@ -79,34 +79,44 @@ const getNumber = numberButton.forEach((numbutton) => {
   });
 });
 
-const getNumberfromKB = numberButton.forEach((numbutton) => {
-  numbutton.addEventListener("keydown", (event) => {
+
+
+// --------------------------------------keyboard part -------------------------------------
+// document.addEventListener("keydown", (event) => {
+//    numberButton.forEach(button => {
+//        if (button.textContent == event.key) {
+//            display.textContent += event.key
+//        }
+     
+//    })
+//    operatorButton.forEach(opbutton => {
+//       if (opbutton.textContent == event.key) {
+//         display.textContent += event.key
+//     }
+//         display.textContent = ""  
+//    })
+//    if (operator === '+' || operator === '-' || operator === '/' || operator === '*') {
+//     secondNum = display.textContent;
+//     if (secondNum.includes('.')) {
+//       decimal.disabled = true;
+//     }
+//     else decimal.disabled = false;
+//     secondNum = parseFloat(secondNum);
+//   } else {
+//     firstNum = display.textContent;
+//     if (firstNum.includes('.')) {
+//       decimal.disabled = true;
+//     }
+//     else decimal.disabled = false;
+//     firstNum = parseFloat(firstNum);
+//   }
+//    equalButton.addEventListener("click", () => {
+//     let result = operate(firstNum, secondNum, operator);
+//     display.textContent = result;
     
-    if (event.key === numbutton.textContent) {
-      display.textContent += event.key;
-        if (operator === '+' || operator === '-' || operator === '/' || operator === '*') {
-          secondNum = display.textContent;
-          if (secondNum.includes('.')) {
-            decimal.disabled = true;
-          }
-          else decimal.disabled = false;
-          secondNum = parseFloat(secondNum);
-        } else {
-          firstNum = display.textContent;
-          if (firstNum.includes('.')) {
-            decimal.disabled = true;
-          }
-          else decimal.disabled = false;
-          firstNum = parseFloat(firstNum);
-        }
-      
-      console.log("fist num is "+firstNum);
-      console.log("second is "+secondNum); 
-    }else display.textContent = "Press A valid key"
-  });
-});
-
-
+//     console.log(result);
+//   })
+// })
 
 operatorButton.forEach((opbutton) => {
   opbutton.addEventListener("click", () => {
