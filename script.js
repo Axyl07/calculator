@@ -35,6 +35,9 @@ const operate = function (first, second, operator) {
 };
 
 const display = document.querySelector("#display");
+
+// const button = document.querySelectorAll("button");
+
 const numberButton = document.querySelectorAll(".numberButtons button");
 const operatorButton = document.querySelectorAll(".EvaluationButtons button")
 const equalButton = document.querySelector("#equal");
@@ -45,32 +48,38 @@ let firstNum;
 let secondNum;
 let operator;
 
-const getNumber = numberButton.forEach((button) => {
-  button.addEventListener("click", () => {
-    display.textContent += button.textContent;
-    if (firstNum) {
-      secondNum = button.textContent;
-    } else firstNum = button.textContent;
-      // console.log(firstNum);
-      // return firstNum;
+const getNumber = numberButton.forEach((numbutton) => {
+  numbutton.addEventListener("click", () => {
+    display.textContent += numbutton.textContent;
+    if (operator === '+' || operator === '-' || operator === '/' || operator === '*') {
+      secondNum = display.textContent;
+      secondNum = parseFloat(secondNum);
+    } else {
+      firstNum = display.textContent;
+      firstNum = parseFloat(firstNum);
+    }
+
+    console.log("fist num is "+firstNum);
+    console.log("second is "+secondNum);
   });
 });
 
-operatorButton.forEach((button) => {
-    button.addEventListener("click", () => {
-      operator = button.textContent;
-      display.textContent = " "
+operatorButton.forEach((opbutton) => {
+  opbutton.addEventListener("click", () => {
+    display.textContent = opbutton.textContent;
+      operator = opbutton.textContent;
+      display.textContent = ""
  
     })
 })
 
 equalButton.addEventListener("click", () => {
-  console.log(firstNum)
-  console.log(secondNum)
-  console.log(operator)
   display.textContent = operate(firstNum, secondNum, operator);
   console.log(operate(firstNum, secondNum, operator));
 })
 clear.addEventListener("click", () => {
-    delete displayValue
+  display.textContent = "";
+  firstNum = "";
+  secondNum = "";
+  operator = "";
 })
