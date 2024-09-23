@@ -27,7 +27,10 @@ const operate = function (first, second, operator) {
     case "*":
       return multiply(first, second).toFixed(2);
     case "/":
-      return divide(first, second).toFixed(2);
+      if (second == 0) {
+        return "Erm what the sigma 🤔";
+      }
+      else return divide(first, second).toFixed(2);
     default:
         "Enter valid numbers";
         break;
@@ -75,6 +78,35 @@ const getNumber = numberButton.forEach((numbutton) => {
     console.log("second is "+secondNum);
   });
 });
+
+const getNumberfromKB = numberButton.forEach((numbutton) => {
+  numbutton.addEventListener("keydown", (event) => {
+    
+    if (event.key === numbutton.textContent) {
+      display.textContent += event.key;
+        if (operator === '+' || operator === '-' || operator === '/' || operator === '*') {
+          secondNum = display.textContent;
+          if (secondNum.includes('.')) {
+            decimal.disabled = true;
+          }
+          else decimal.disabled = false;
+          secondNum = parseFloat(secondNum);
+        } else {
+          firstNum = display.textContent;
+          if (firstNum.includes('.')) {
+            decimal.disabled = true;
+          }
+          else decimal.disabled = false;
+          firstNum = parseFloat(firstNum);
+        }
+      
+      console.log("fist num is "+firstNum);
+      console.log("second is "+secondNum); 
+    }else display.textContent = "Press A valid key"
+  });
+});
+
+
 
 operatorButton.forEach((opbutton) => {
   opbutton.addEventListener("click", () => {
