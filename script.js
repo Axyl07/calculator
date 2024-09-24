@@ -132,7 +132,7 @@ equalButton.addEventListener("click", () => {
   let result = operate(firstNum, secondNum, operator);
   display.textContent = result;
   console.log(`result of operation ${firstNum} ${operator} ${secondNum} is ` + result);
-  firstNum = result;
+  firstNum = parseFloat(result);
   console.log("first num new "+firstNum);
 
 })
