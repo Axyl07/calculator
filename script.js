@@ -80,22 +80,23 @@ const getNumber = numberButton.forEach((numbutton) => {
 });
 
 
-
 // --------------------------------------keyboard part -------------------------------------
+// const keyboardButtons = document.querySelectorAll('button');
 // document.addEventListener("keydown", (event) => {
-//    numberButton.forEach(button => {
-//        if (button.textContent == event.key) {
+//    keyboardButtons.forEach(button => {
+//        if (button.textContent == event.key && (event.key !== '+' || event.key !== '-' || event.key !== '/' || event.key !== '*')) {
 //            display.textContent += event.key
 //        }
      
 //    })
-//    operatorButton.forEach(opbutton => {
-//       if (opbutton.textContent == event.key) {
-//         display.textContent += event.key
-//     }
-//         display.textContent = ""  
-//    })
-//    if (operator === '+' || operator === '-' || operator === '/' || operator === '*') {
+//   //  operatorButton.forEach(opbutton => {
+//   //     if (opbutton.textContent == event.key) {
+//   //       display.textContent += event.key
+//   //   }
+//   //       display.textContent = ""  
+//   //  })
+//   if (event.key === '+' || event.key === '-' || event.key === '/' || event.key === '*') {
+//     operator = event.key;
 //     secondNum = display.textContent;
 //     if (secondNum.includes('.')) {
 //       decimal.disabled = true;
@@ -114,7 +115,7 @@ const getNumber = numberButton.forEach((numbutton) => {
 //     let result = operate(firstNum, secondNum, operator);
 //     display.textContent = result;
     
-//     console.log(result);
+//     console.log(`result of operation ${firstNum} ${operator} ${secondNum} is ` + result);
 //   })
 // })
 
@@ -130,8 +131,10 @@ operatorButton.forEach((opbutton) => {
 equalButton.addEventListener("click", () => {
   let result = operate(firstNum, secondNum, operator);
   display.textContent = result;
-  
-  console.log(result);
+  console.log(`result of operation ${firstNum} ${operator} ${secondNum} is ` + result);
+  firstNum = result;
+  console.log("first num new "+firstNum);
+
 })
 clear.addEventListener("click", () => {
   display.textContent = "";
